@@ -1,25 +1,33 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { Auth_signIn } from "../api/Auth";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../providers/UserProvider";
 
+// signIn画面で動いているプログラム
 export  const SignIn = ()=>{
-    const [userID, setUserID] = useState<string>("");
+    const [username, setUsername] = useState<string>("");
     const [pass, setPass] = useState<string>("");
+    const { setUserinfo } = useContext(UserContext);
     const navigate = useNavigate();
 
-    //Loginボタンでこの関数が実行される
-    const onClickSignIn = ()=>{
-        console.log("click");
-        const response = Auth_signIn(userID, pass);
-        console.log(`${userID}と${pass}でonclick=>${response}`);
-        navigate('/main');  // メイン画面に遷移
-        
+    //Loginボタンクリックでこの関数が実行される
+    const onClickSignIn = async ()=>{
+        const response_data = await Auth_signIn(username, pass);
+        if(response_data && response_data.token){
+            // idとtokenを保存
+            setUserinfo({id: response_data.user_id ,token: response_data.token});
+            navigate(`/main`);
+        }
+        else {
+            alert("nameまたはpasswordが間違っています");
+        }
     }
+
     return (
         <div>
             <div>
                 <label htmlFor="id">ID</label>
-                <input id="id" value={userID} type="text" onChange={(evt)=>{ setUserID(evt.target.value) }}/>
+                <input id="id" value={username} type="text" onChange={(evt)=>{ setUsername(evt.target.value) }}/>
             </div>
             <div>
                 <label htmlFor="password">Password</label>
