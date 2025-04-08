@@ -7,9 +7,8 @@ import { getList } from '../api/Post';
 
 // 掲示板の画面、Postが表示される
 export const PostList = () => {
-    // PostListの内容配列
+
     const {comments ,setComments} = useContext(PostContext);
-    // idとtokenのオブジェクト
     const {userinfo} = useContext(UserContext);
 
     //ポスト一覧を取得する関数
@@ -37,7 +36,6 @@ export const PostList = () => {
 
     return(
         <SPostList>
-            <p>PostList</p>
              {comments.map((ele)=>
                 <Post key={ele.id} post={ele}/>
             )}
@@ -46,7 +44,8 @@ export const PostList = () => {
 }
 
 const SPostList = styled.div`
-  margin-top: 16px;
-  height: 100%;
+  margin-top: 15px;
+  height: 65%;
   overflow-y: scroll;
+  background-color: white;
 `

@@ -1,7 +1,8 @@
 import {Header} from "./Header";
 import {SideBar} from "./SideBar"
-import {Contents} from './Body';
+import {Contents} from './Contents';
 import styled from 'styled-components';
+import { ButtonFunction } from "./ButtonFunction";
 
 export const MainLayout = ()=>{
     return(
@@ -15,6 +16,7 @@ export const MainLayout = ()=>{
             </SSideBar>
             <SContents>
                 <Contents></Contents>
+                <ButtonFunction />
             </SContents>
         </SBody>
         </>
@@ -41,4 +43,5 @@ const SSideBar = styled.div`
 const SContents = styled.div`
 	width: 100%;
 	height: 100%;
-    `
+    background-color:rgba(98, 196, 108, 0.98);
+`

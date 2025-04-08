@@ -13,9 +13,9 @@ export const Post_text = async (user_id: string, token: string, msg: string)=>{
 }
 
 // DBから投稿された内容を一覧として持ってくる
-export const getList = async (token :string)=>{
+export const getList = async (token :string, num :number = 0)=>{
     const url = 'http://localhost:3000/post';
-    const response = await axios.get(url, {params: {token: token, records: 10}});
+    const response = await axios.get(url, {params: {token: token, start: num, records: 10}});
     // response.dataはオブジェクトの配列で帰ってくる
     return response.data
 }

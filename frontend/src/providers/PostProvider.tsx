@@ -11,12 +11,16 @@ export type PostType = {
 type PostContextType = {
     comments: PostType[],
     setComments :React.Dispatch<React.SetStateAction<PostType[]>>
+    commentNumber: number;
+    setCommentNumber :React.Dispatch<React.SetStateAction<number>>
 }
 
 // useContextの初期値(type通りにオブジェクトに値を入れていくだけ)
 export const PostContext = createContext<PostContextType>({
     comments: [],
-    setComments: ()=>{}
+    setComments: ()=>{},
+    commentNumber: 0,
+    setCommentNumber: ()=>{}
 })
 
 // 受け取るpropsの型定義
@@ -26,9 +30,9 @@ type PostProviderProps = {
 
 export const PostProvider = ({ children }: PostProviderProps)=>{
     const [comments, setComments] = useState<PostType[]>([]);
-
+    const [commentNumber, setCommentNumber] = useState<number>(0);
     return(
-        <PostContext.Provider value={{comments, setComments}}>
+        <PostContext.Provider value={{comments, setComments, commentNumber, setCommentNumber}}>
             {children}
         </PostContext.Provider>
     );
