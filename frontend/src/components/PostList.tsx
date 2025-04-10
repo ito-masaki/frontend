@@ -19,7 +19,8 @@ export const PostList = () => {
         if(response_List){
             response_List.forEach((element :any) => {
                 post_list.push({
-                    id: element.id,
+                    Post_id: element.id,
+                    user_id: element.user_id,
                     user_name: element.user_name,
                     content: element.content,
                     created_at: new Date(element.created_at),
@@ -28,6 +29,7 @@ export const PostList = () => {
         }
         setComments(post_list);
     }
+
     // これを実行したいのは最初の画面表示の時のみ、後はsideバーでPostするたびそちらで更新している
     // 再レンダリング時に実行されないようにする
     useEffect(()=>{
@@ -37,7 +39,7 @@ export const PostList = () => {
     return(
         <SPostList>
              {comments.map((ele)=>
-                <Post key={ele.id} post={ele}/>
+                <Post key={ele.Post_id} post={ele}/>
             )}
         </SPostList>
     )

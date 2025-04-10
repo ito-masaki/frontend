@@ -17,10 +17,11 @@ export const SideBar = () => {
         if(posts) {
             posts.forEach((element:any) => {
                 PostList.push({
-                    id:element.id,
+                    Post_id: element.id,
+                    user_id: element.user_id,
                     user_name: element.user_name,
                     content: element.content,
-                    created_at: new Date(element.created_at),   
+                    created_at: new Date(element.created_at),
                 });
             });
         }
@@ -35,13 +36,25 @@ export const SideBar = () => {
 
     return(
     <SSideBar>
-        <SSideBarRow>hoge</SSideBarRow>
-        <SSideBarRow>hoge@example.com</SSideBarRow>
-        <SSideBarRow>
-            <SSideBarTextArea rows={4} value={msg} onChange={(evt) =>{ setMsg(evt.target.value) }} />
-        </SSideBarRow>
         <div>
-            <SSideBarButton onClick={onSendClick}>送信</SSideBarButton>
+            <SSideBarRow>hoge</SSideBarRow>
+            <SSideBarRow>hoge@example.com</SSideBarRow>
+            <SSideBarRow>
+                <SSideBarTextArea rows={4} value={msg} onChange={(evt) =>{ setMsg(evt.target.value) }} />
+            </SSideBarRow>
+            <div>
+                <SSideBarButton onClick={onSendClick}>送信</SSideBarButton>
+            </div>
+        </div>
+        <div>
+            <SSideBarRow>条件検索</SSideBarRow>
+            <SSideBarRow>
+                <SSideBarTextArea rows={4} value={msg} onChange={(evt) =>{ setMsg(evt.target.value) }} />
+            </SSideBarRow>
+            <div>
+                <SSideBarButton onClick={onSendClick}>検索</SSideBarButton>
+            </div>
+
         </div>
     </SSideBar>
     )

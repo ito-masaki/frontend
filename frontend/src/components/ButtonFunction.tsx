@@ -21,7 +21,8 @@ export const ButtonFunction = () => {
         if (posts) {
             posts.forEach((element: any) => {
                 PostList.push({
-                    id: element.id,
+                    Post_id: element.id,
+                    user_id: element.user_id,
                     user_name: element.user_name,
                     content: element.content,
                     created_at: new Date(element.created_at),

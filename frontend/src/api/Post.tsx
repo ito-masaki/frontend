@@ -19,3 +19,10 @@ export const getList = async (token :string, num :number = 0)=>{
     // response.dataはオブジェクトの配列で帰ってくる
     return response.data
 }
+
+// DBへコメントの削除を依頼,更新された10件のcomment dataが帰ってくる
+export const delete_comment = async (token :string, Post_Id :number, num :number)=>{
+    const url = 'http://localhost:3000/post';
+    const response = await axios.delete(url, {params: {token: token, Post_id: Post_Id, start: num, records: 10}});
+    return response.data
+}
