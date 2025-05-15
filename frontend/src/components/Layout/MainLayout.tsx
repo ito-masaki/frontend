@@ -1,8 +1,8 @@
-import {Header} from "./Header";
-import {SideBar} from "./SideBar"
-import {Contents} from './Contents';
+import {Header} from "../Header";
+import {SideBar} from "../SideBar"
+import {Contents} from '../Contents';
 import styled from 'styled-components';
-import { ButtonFunction } from "./ButtonFunction";
+import { ButtonFunction } from "../ButtonFunction";
 
 export const MainLayout = ()=>{
     return(

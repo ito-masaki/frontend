@@ -1,4 +1,5 @@
-import { SignInLayout } from "../components/SignInLayout";
+import { SignInLayout } from "../components/Layout/SignInLayout"
+
 
 export const SignIn = ()=>{
     return <SignInLayout />

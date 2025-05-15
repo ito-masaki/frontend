@@ -12,7 +12,7 @@ export const Header = ()=>{
         const GetmyUser = async ()=>{
             const name = userinfo.id !== null ? userinfo.id : 0; //三項演算子
             const user = await getUser(name, userinfo.token);
-            setUserName(user);
+            setUserName(user.name);
         }
         GetmyUser();
     },[]);

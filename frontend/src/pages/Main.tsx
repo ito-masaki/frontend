@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { MainLayout } from "../components/MainLayout";
+import { MainLayout } from "../components/Layout/MainLayout";
 import { PostProvider } from "../providers/PostProvider";
 import { Navigate } from "react-router-dom";
 import { UserContext } from "../providers/UserProvider";

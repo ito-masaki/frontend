@@ -1,4 +1,4 @@
-import { SignIn } from "./SignIn";
+import { SignIn } from "../SignIn"
 
 export const SignInLayout = ()=>{
     return(<SignIn />)

@@ -1,14 +1,17 @@
 import { useContext, useState } from "react"
 import { UserContext } from "../providers/UserProvider";
-import { getList, Post_text } from "../api/Post";
+import { getKeywordList, getList, Post_text } from "../api/Post";
 import styled from "styled-components";
 import { PostContext, PostType } from "../providers/PostProvider";
+import { Link } from "react-router-dom";
 
 //sideバーの部分、comments入力画面
 export const SideBar = () => {
     const {userinfo} = useContext(UserContext);
     const {setComments} = useContext(PostContext);
     const [msg, setMsg] = useState("");
+    const [keyword, setKeyword] = useState("");
+
     
     // PostListを取ってきてComments(表示する内容のPost配列)を更新
     const getPostList = async ()=>{
@@ -34,9 +37,27 @@ export const SideBar = () => {
       await getPostList();
     }
 
+    const onSearchClick = async ()=>{
+        const posts = await getKeywordList(userinfo.token, keyword);
+        let PostList :PostType[] = [];
+        if(posts) {
+            posts.forEach((element:any) => {
+                PostList.push({
+                    Post_id: element.id,
+                    user_id: element.user_id,
+                    user_name: element.user_name,
+                    content: element.content,
+                    created_at: new Date(element.created_at),
+                });
+            });
+        }
+        setComments(PostList);
+    }
+
     return(
     <SSideBar>
         <div>
+            <Link to="/main/profile">プロフィール画面</Link>
             <SSideBarRow>hoge</SSideBarRow>
             <SSideBarRow>hoge@example.com</SSideBarRow>
             <SSideBarRow>
@@ -46,16 +67,15 @@ export const SideBar = () => {
                 <SSideBarButton onClick={onSendClick}>送信</SSideBarButton>
             </div>
         </div>
-        <div>
-            <SSideBarRow>条件検索</SSideBarRow>
+        <Search>
+            <SSideBarRow>キーワード検索</SSideBarRow>
             <SSideBarRow>
-                <SSideBarTextArea rows={4} value={msg} onChange={(evt) =>{ setMsg(evt.target.value) }} />
+                <SSideBarTextArea rows={4} value={keyword} onChange={(evt) =>{ setKeyword(evt.target.value) }} />
             </SSideBarRow>
             <div>
-                <SSideBarButton onClick={onSendClick}>検索</SSideBarButton>
+                <SSideBarButton onClick={onSearchClick}>検索</SSideBarButton>
             </div>
-
-        </div>
+        </Search>
     </SSideBar>
     )
 }
@@ -79,5 +99,9 @@ const SSideBarButton = styled.button`
   padding: 4px;
   border-radius: 8px;
   color: #FAFAFA;
-  width: 100%;
+  width: 80%;
+`
+
+const Search = styled.div`
+  padding-top: 20px;
 `
