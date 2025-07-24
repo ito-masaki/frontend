@@ -3,13 +3,13 @@ import axios from "axios";
 
 // idに対応するユーザ情報をゲット
 export const getUser = async (user_id :number | null, token: string)=>{
-    const url = `http://localhost:3000/user/${user_id}`;
+    const url = `${import.meta.env.VITE_Backend_URL}/user/${user_id}`;
     const response: any = await axios.get(url, {params: {token: token}});
     return response.data;
 }
 
 export const EditUser = async (user_id :number | null, token: string, name: string, introduction: string, gender: string)=>{
-    const url = `http://localhost:3000/user/edit`;
+    const url = `${import.meta.env.VITE_Backend_URL}/user/edit`;
     const body = {
         id: user_id,
         name: name,
@@ -22,7 +22,7 @@ export const EditUser = async (user_id :number | null, token: string, name: stri
 
 // 新規登録
 export const SignInUser = async (user_id :string, email :string, password :string)=>{
-    const url = `http://localhost:3000/user/application`;
+    const url = `${import.meta.env.VITE_Backend_URL}/user/application`;
     const body = {
         name: user_id,
         email: email,
@@ -34,7 +34,7 @@ export const SignInUser = async (user_id :string, email :string, password :strin
 
 // 認証コード送信
 export const CreateUser = async (email :string, pass :string)=>{
-    const url = `http://localhost:3000/user/certification`;
+    const url = `${import.meta.env.VITE_Backend_URL}/user/certification`;
     const body = {
         email: email,
         pass: pass,
@@ -45,7 +45,7 @@ export const CreateUser = async (email :string, pass :string)=>{
 
 // パスワード再設定
 export const Reset_passwaord = async (email: string)=>{
-    const url = `http://localhost:3000/user/reset_password`;
+    const url = `${import.meta.env.VITE_Backend_URL}/user/reset_password`;
     const body = {
         email: email,
     }
@@ -56,7 +56,7 @@ export const Reset_passwaord = async (email: string)=>{
 
 // パスワード送信
 export const Sendpass = async (pass :string, token :string)=>{
-    const url = `http://localhost:3000/user/enter_password`;
+    const url = `${import.meta.env.VITE_Backend_URL}/user/enter_password`;
     const body = {
         pass: pass,
     }
