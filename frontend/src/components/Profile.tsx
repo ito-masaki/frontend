@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { use, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../providers/UserProvider";
 import { EditUser, getUser } from "../api/User";
 
@@ -37,6 +37,7 @@ export const Profile = ()=>{
 
     const onClickEdit = async ()=>{
         const response = await EditUser(userinfo.id, userinfo.token,  user_id, introduction, gender);
+        console.log(response);
         setUserinfo({id: userinfo.id, token: userinfo.token});
     }
 
